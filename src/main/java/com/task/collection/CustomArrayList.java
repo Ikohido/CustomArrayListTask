@@ -1,4 +1,4 @@
-package com.task.entity;
+package com.task.collection;
 
 import com.task.service.SortLogic;
 
@@ -6,8 +6,11 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Objects;
 
-// Реализация своего ArrayList.
-public class ArrayListEntity<T> {
+/**
+Ниже показана реализация своего ArrayList с необходимыми базовыми методами
+для работы и конструкторами.
+ */
+public class CustomArrayList<T> {
     // Текущий размер коллекции
     private int size;
     // Массив встроенный в наш ArrayList
@@ -29,8 +32,10 @@ public class ArrayListEntity<T> {
     }
 
     // Добавление объекта по индексу
-    public void addByIndex(int index, T t) {
-        Objects.checkIndex(index, size);
+    public void add(int index, T t) {
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException("Index " + index + " out of bounds for length " + size);
+        }
         if (size == objects.length) {
             upgrade();
         }
@@ -42,8 +47,8 @@ public class ArrayListEntity<T> {
     }
 
     // Метод, аналогичный Arrays.asList()
-    public static <T> ArrayListEntity<T> asList(T... elements) {
-        ArrayListEntity<T> list = new ArrayListEntity<>();
+    public static <T> CustomArrayList<T> asList(T... elements) {
+        CustomArrayList<T> list = new CustomArrayList<>();
         for (T element : elements) {
             list.add(element);
         }
@@ -73,9 +78,16 @@ public class ArrayListEntity<T> {
     }
 
     // Конструктор коллекции по умолчанию
-    public ArrayListEntity() {
+    public CustomArrayList() {
         objects = new Object[10];
         size = 0;
+    }
+    public CustomArrayList(int capacity){
+        if (capacity < 0) {
+            throw new IllegalArgumentException("Размер коллекции не должен быть отрицательным");
+        }
+        objects = new Object[size];
+        this.size = 0;
     }
 
     // Текущий размер коллекции

@@ -4,7 +4,9 @@ import java.util.Comparator;
 
 import static java.util.Objects.compare;
 
-// Реализация QuickSort
+/**
+ * Реализация QuickSort сортировки
+ */
 public class SortLogic {
 
     // Сам алгоритм QuickSort

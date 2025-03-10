@@ -1,4 +1,4 @@
-import com.task.entity.ArrayListEntity;
+import com.task.collection.CustomArrayList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -6,12 +6,15 @@ import java.util.Comparator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ArrayListEntityTest {
-    ArrayListEntity arrayListEntity;
+/**
+ * Ниже написаны тесты для всех методов кастомного ArrayList
+ */
+public class CustomArrayListTest {
+    CustomArrayList customArrayList;
 
     @BeforeEach
     public void createList() {
-        arrayListEntity = new ArrayListEntity<>();
+        customArrayList = new CustomArrayList<>();
     }
 
     /**
@@ -25,8 +28,8 @@ public class ArrayListEntityTest {
         // --- Given ---
         String testString = "testString";
         // --- When ---
-        arrayListEntity.add(testString);
-        String actualString = (String) arrayListEntity.get(0);
+        customArrayList.add(testString);
+        String actualString = (String) customArrayList.get(0);
         // --- Then ---
         assertEquals(testString, actualString);
     }
@@ -40,10 +43,10 @@ public class ArrayListEntityTest {
     @Test
     public void add() {
         // --- When ---
-        arrayListEntity.add(15);
+        customArrayList.add(15);
         // --- Then ---
-        assertEquals(15, arrayListEntity.get(0));
-        assertEquals(1, arrayListEntity.size());
+        assertEquals(15, customArrayList.get(0));
+        assertEquals(1, customArrayList.size());
     }
 
     /**
@@ -55,11 +58,11 @@ public class ArrayListEntityTest {
     @Test
     public void asList() {
         // --- When ---
-        arrayListEntity = ArrayListEntity.asList(5, 10, 15, 20, 25);
+        customArrayList = CustomArrayList.asList(5, 10, 15, 20, 25);
         // --- Then ---
-        assertEquals(5, arrayListEntity.size());
-        assertEquals(15, arrayListEntity.get(2));
-        assertEquals(25, arrayListEntity.get(4));
+        assertEquals(5, customArrayList.size());
+        assertEquals(15, customArrayList.get(2));
+        assertEquals(25, customArrayList.get(4));
     }
 
     /**
@@ -72,11 +75,11 @@ public class ArrayListEntityTest {
     @Test
     public void addByIndex() {
         // --- Given ---
-        arrayListEntity = ArrayListEntity.asList(15, 25, 35);
+        customArrayList = CustomArrayList.asList(15, 25, 35);
         // --- When ---
-        arrayListEntity.addByIndex(2, 50);
+        customArrayList.add(2, 50);
         // --- Then ---
-        assertEquals(50, arrayListEntity.get(2));
+        assertEquals(50, customArrayList.get(2));
     }
 
     /**
@@ -89,13 +92,13 @@ public class ArrayListEntityTest {
     @Test
     public void remove() {
         // --- Given ---
-        arrayListEntity = ArrayListEntity.asList(15, 25, 35);
+        customArrayList = CustomArrayList.asList(15, 25, 35);
         // --- When ---
-        arrayListEntity.remove(1);
+        customArrayList.remove(1);
         // --- Then ---
-        assertEquals(2, arrayListEntity.size());
-        assertEquals(15, arrayListEntity.get(0));
-        assertEquals(35, arrayListEntity.get(1));
+        assertEquals(2, customArrayList.size());
+        assertEquals(15, customArrayList.get(0));
+        assertEquals(35, customArrayList.get(1));
     }
 
     /**
@@ -107,11 +110,11 @@ public class ArrayListEntityTest {
     @Test
     public void сlear() {
         // --- Given ---
-        arrayListEntity = ArrayListEntity.asList(15, 25, 35);
+        customArrayList = CustomArrayList.asList(15, 25, 35);
         // --- When ---
-        arrayListEntity.clear();
+        customArrayList.clear();
         // --- Then ---
-        assertEquals(0, arrayListEntity.size());
+        assertEquals(0, customArrayList.size());
     }
 
     /**
@@ -123,13 +126,13 @@ public class ArrayListEntityTest {
     @Test
     public void set() {
         // --- Given ---
-        arrayListEntity.add(1);
-        arrayListEntity.add(2);
+        customArrayList.add(1);
+        customArrayList.add(2);
         // --- When ---
-        arrayListEntity.set(1, 3);
+        customArrayList.set(1, 3);
         // --- Then ---
-        assertEquals(3, arrayListEntity.get(1));
-        assertEquals(1, arrayListEntity.get(0));
+        assertEquals(3, customArrayList.get(1));
+        assertEquals(1, customArrayList.get(0));
     }
 
     /**
@@ -141,9 +144,9 @@ public class ArrayListEntityTest {
     @Test
     public void size() {
         // --- When ---
-        arrayListEntity = ArrayListEntity.asList(15, 25, 35, 45, 55);
+        customArrayList = CustomArrayList.asList(15, 25, 35, 45, 55);
         // --- Then ---
-        assertEquals(5, arrayListEntity.size());
+        assertEquals(5, customArrayList.size());
     }
 
     /**
@@ -156,13 +159,13 @@ public class ArrayListEntityTest {
     @Test
     public void sort() {
         // --- Given ---
-        arrayListEntity = ArrayListEntity.asList(3, 1, 2);
+        customArrayList = CustomArrayList.asList(3, 1, 2);
         // --- When ---
-        arrayListEntity.sort(Comparator.naturalOrder());
+        customArrayList.sort(Comparator.naturalOrder());
         // --- Then ---
-        assertEquals(1, arrayListEntity.get(0));
-        assertEquals(2, arrayListEntity.get(1));
-        assertEquals(3, arrayListEntity.get(2));
+        assertEquals(1, customArrayList.get(0));
+        assertEquals(2, customArrayList.get(1));
+        assertEquals(3, customArrayList.get(2));
     }
 
 }
